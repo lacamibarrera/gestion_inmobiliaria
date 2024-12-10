@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1 style="text-align: center;">Bienvenido A "Gestión Inmobiliaria"</h1>
+
+<h1 style="text-align: center;">Catálogo de Inmuebles</h1>
+    <div class="row">
+        {% for inmueble in inmuebles %}
+        <div class="col-md-4 mb-2">
+            <div class="card">
+                {% if inmueble.imagen_url %}
+                 <img src="{{ inmueble.imagen_url }}" alt="{{ inmueble.nombre }}" class="card-img-top" style="width: 100%; height: 200px; object-fit: cover;">
+                {% else %}
+                <p>No hay imagen disponible.</p>
+                {% endif %}
+                <div class="card-body" style="padding: 10px;">
+                    <h5 class="card-title">{{ inmueble.nombre }}</h5>
+                    <p class="card-text">{{ inmueble.descripcion }}</p>
+                    <p class="card-text">Precio mensual: {{ inmueble.precio_mensual }}</p>
+                    <p class="card-text">Estado: {{inmueble.estado}} </p>
+                    <p class ="card-text">Estacionamientos: {{inmueble.estacionamientos}} </p>
+                    <p class ="card-text">Habitaciones: {{inmueble.habitaciones}} </p>
+                    <p class ="card-text">Baños: {{inmueble.banos}} </p>
+                    <p class ="card-text">Comuna: {{inmueble.id_comuna}} </p>
+                    <p class ="card-text">Region: {{inmueble.id_region}} </p>
+            
+                    <a href="{% url 'detalle_inmueble' inmueble.id_inmueble %}" class="btn btn-primary">Detalle Propiedad</a>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <p>No hay inmuebles disponibles en este momento.</p>
+        {% endfor %}
+    </div>
+{% endblock %}

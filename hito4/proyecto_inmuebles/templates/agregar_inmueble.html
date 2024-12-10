@@ -1,0 +1,120 @@
+{% extends "base.html" %}
+{% block content %}
+<div class ="container text-center mb-3 mt-2">
+<h3>Ingresa los datos de Tu Inmueble para Agregar al Catálogo</h3>
+</div>
+
+<form method="POST" class="border p-4 rounded shadow-sm">
+    
+    {% csrf_token %}
+    <div class="form-group mb-2">
+        <label for="id_nombre" class="form-label">Nombre del Inmueble</label>
+        {{ form.nombre }}
+    </div>
+    
+    <div class="form-group mb-2">
+        <label for="id_tipo_inmueble" class="form-label">Tipo de Inmueble</label>
+        {{ form.tipo_inmueble }}
+    </div>
+
+    <div class="form-group mb-2">
+        <label for="id_descripcion" class="form-label">Descripción</label>
+        {{ form.descripcion }}
+    </div>
+
+    <div class="form-group mb-2">
+        <label for="id_m2_construidos" class="form-label">Metros Cuadrados Construidos</label>
+        {{ form.m2_construidos }}
+    </div>
+
+    <div class="form-group mb-2">
+        <label for="id_m2_terreno" class="form-label">Metros Cuadrados Terreno</label>
+        {{ form.m2_terreno }}
+    </div>
+
+    <div class="form-group mb-2">
+        <label for="id_estacionamientos" class="form-label">Estacionamientos</label>
+        {{ form.estacionamientos }}
+    </div>
+
+    <div class="form-group mb-2">
+        <label for="id_habitaciones" class="form-label">Habitaciones</label>
+        {{ form.habitaciones }}
+    </div>
+
+    <div class="form-group mb-2">
+        <label for="id_banos" class="form-label">Baños</label>
+        {{ form.banos }}
+    </div>
+
+    <div class="form-group mb-2">
+        <label for="id_direccion" class="form-label">Dirección</label>
+        {{ form.direccion }}
+    </div>
+
+    <div class="form-group mb-2">
+        <label for="id_region" class="form-control">Región</label>
+        {{ form.id_region }}
+    </div>
+
+    <div class="form-group mb-2">
+        <label for="id_comuna" class="form-control">Comuna</label>
+        {{ form.id_comuna }}
+    </div>
+
+
+    <div class="form-group mb-2">
+        <label for="id_precio_mensual" class="form-label">Precio Mensual</label>
+        {{ form.precio_mensual }}
+    </div>
+
+    <div class="form-group mb-2">
+        <label for="id_estado" class="form-label">Estado</label>
+        {{ form.estado }}
+    </div>
+
+    <div class="form-group mb-2">
+        <label for="id_imagen_url" class="form-label">Imagen URL</label>
+        {{ form.imagen_url }}
+    </div>
+
+    <button type="submit" class="btn btn-primary">Agregar Inmueble</button>
+</form>
+
+{% if form.errors %}
+    <div class="alert alert-danger">
+        <ul>
+            {% for field in form %}
+                {% for error in field.errors %}
+                    <li>{{ error }}</li>
+                {% endfor %}
+            {% endfor %}
+        </ul>
+    </div>
+{% endif %}
+
+<!--Se agrega Javascript para poder filtrar las comunas por region-->
+<script>
+    document.getElementById('region_select').addEventListener('change', function() {
+        var regionId = this.value;
+
+
+        if (regionId) {
+           
+            fetch(`/get_comunas/${regionId}/`)
+                .then(response => response.json())
+                .then(data => {
+                    var comunaSelect = document.getElementById('comuna_select');
+                    comunaSelect.innerHTML = '<option value="">Seleccione una comuna</option>'; 
+                    data.comunas.forEach(function(comuna) {
+                        var option = document.createElement('option');
+                        option.value = comuna.id_comuna;
+                        option.textContent = comuna.nombre_comuna;
+                        comunaSelect.appendChild(option);
+                    });
+                });
+        }
+    });
+</script>
+
+{% endblock %}

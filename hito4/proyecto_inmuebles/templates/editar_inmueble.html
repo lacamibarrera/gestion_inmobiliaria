@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <div class="container mt-4">
+    <h2>Editar Inmueble</h2>
+
+    <form method="POST">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button type="submit" class="btn btn-primary">Actualizar Inmueble</button>
+    </form>
+
+    <div class="mt-3">
+      <a href="{% url 'listar_inmuebles' %}" class="btn btn-secondary">Volver a la lista de inmuebles</a>
+    </div>
+
+    <div class="mt-3">
+      <form method="POST" action="{% url 'editar_inmueble' inmueble.id_inmueble %}" onsubmit="return confirm('¿Estás seguro de que deseas eliminar este inmueble?');">
+        {% csrf_token %}
+        <button type="submit" name="eliminar_inmueble" class="btn btn-danger">Eliminar Inmueble</button>
+    </form>
+    </div>
+  </div>
+{% endblock %}

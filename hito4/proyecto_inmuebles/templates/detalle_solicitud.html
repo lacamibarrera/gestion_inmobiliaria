@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-4">
+  <div class="card">
+    <div class="card-header">
+      <h2>Detalle de la Solicitud</h2>
+    </div>
+    <div class="card-body">
+      <p><strong>Inmueble:</strong> {{ solicitud.inmueble.nombre }}</p>
+      <p><strong>Arrendador:</strong> {{ solicitud.arrendador.username }}</p>
+      <p><strong>Mensaje:</strong> {{ solicitud.mensaje }}</p>
+      <p><strong>Estado:</strong> {{ solicitud.estado }}</p>
+      <p><strong>Fecha de Creación:</strong> {{ solicitud.fecha_creacion }}</p>
+
+      <div class="mt-4">
+        <a href="{% url 'detalle_inmueble' solicitud.inmueble.id_inmueble %}" class="btn btn-secondary">Ver Inmueble</a>
+        <a href="{% url 'listar_solicitudes' %}" class="btn btn-primary">Volver a la Lista de Solicitudes</a>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Cierre de sesión{% endblock %}
+
+{% block content %}
+<div class="container text-center">
+    <h2>¡Has enviado Correctamente tu Solicitud!</h2>
+    <p>Espera que El Arrendatario se Comunique contigo.</p>
+
+    <a href="{% url 'home' %}" class="btn btn-primary">Volver al inicio</a>
+</div>
+<div class ="container text-center">
+<h2>Gracias por Visitar "Gestión Inmobiliaria"</h2>
+</div>
+{% endblock %}

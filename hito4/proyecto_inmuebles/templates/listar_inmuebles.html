@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2 class="mb-4">Lista de Inmuebles</h2>
+    
+    {% if user.is_authenticated %}
+        {% if user.userprofile.tipo == 'ARRENDADOR' %}
+            {% if inmuebles %}
+                <table class="table table-bordered table-hover">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Descripción</th>
+                            <th>Precio Mensual</th>
+                            <th>Estado</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for inmueble in inmuebles %}
+                            <tr>
+                                <td>{{ inmueble.nombre }}</td>
+                                <td>{{ inmueble.descripcion }}</td>
+                                <td>${{ inmueble.precio_mensual }}</td>
+                                <td>{{ inmueble.estado }}</td>
+                                <td>
+                                    <a href="{% url 'detalle_inmueble' inmueble.id_inmueble %}" class="btn btn-primary btn-sm">Ver Detalle</a>
+                                    <a href="{% url 'editar_inmueble' inmueble.id_inmueble %}" class="btn btn-warning btn-sm">Editar</a>
+                                    <form method="POST" action="{% url 'editar_inmueble' inmueble.id_inmueble %}" style="display:inline;" onsubmit="return confirm('¿Estás seguro de que deseas eliminar este inmueble?');">
+                                        {% csrf_token %}
+                                        <button type="submit" name="eliminar_inmueble" class="btn btn-danger btn-sm">Eliminar</button>
+                                    </form>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            {% else %}
+                <div class="alert alert-warning" role="alert">
+                    No hay inmuebles disponibles para tu usuario.
+                </div>
+            {% endif %}
+
+        {% elif user.userprofile.tipo == 'ARRENDATARIO' %}
+            {% if inmuebles %}
+                <h1>Inmuebles Disponibles</h1>
+                <div class="row">
+                    {% for inmueble in inmuebles %}
+                        <div class="col-md-4">
+                            <div class="card">
+                                {% if inmueble.imagen_url %}
+                                    <img src="{{ inmueble.imagen.url }}" alt="{{ inmueble.nombre }}" class="card-img-top">
+                                {% else %}
+                                    <p>No hay imagen disponible.</p>
+                                {% endif %}
+                                <div class="card-body">
+                                    <h5 class="card-title">{{ inmueble.nombre }}</h5>
+                                    <p class="card-text">{{ inmueble.descripcion }}</p>
+                                    <p class="card-text">Precio: {{ inmueble.precio }} {{ inmueble.moneda }}</p>
+                                    <p class = "card-text">Estado: {{inmueble.estado}}</p>
+                                    <a href="{% url 'detalle_inmueble' inmueble.id_inmueble %}" class="btn btn-primary">Ver más</a>
+                                    <a href="{% url 'crear_solicitud' inmueble.id_inmueble %}" class="btn btn-success">Solicitar</a>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% else %}
+                <p>No hay inmuebles disponibles en este momento.</p>
+            {% endif %}
+        {% endif %}
+    {% endif %}
+</div>
+{% endblock %}

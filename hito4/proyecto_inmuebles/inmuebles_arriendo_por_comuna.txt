@@ -1,0 +1,63 @@
+Comuna: Viña del Mar
+========================================
+Nombre: Departamento en Viña del Mar
+Descripción: Departamento en pleno centro de Viña, ideal para arrendar durante la temporada alta.
+----------------------------------------
+
+
+Comuna: Concepción
+========================================
+Nombre: Casa en Concepción
+Descripción: Casa con jardín, 4 dormitorios y 3 baños, en una zona tranquila.
+----------------------------------------
+
+
+Comuna: Pucon
+========================================
+Nombre: Cabaña en Pucón
+Descripción: Cabaña de 2 habitaciones, rodeada de naturaleza, ideal para vacaciones.
+----------------------------------------
+
+
+Comuna: Temuco
+========================================
+Nombre: Departamento en Temuco
+Descripción: Departamento de 1 dormitorio, 1 baño, ideal para estudiantes o profesionales.
+----------------------------------------
+
+
+Comuna: Puerto Montt
+========================================
+Nombre: Oficina en Puerto Montt
+Descripción: Oficina en pleno centro de la ciudad, ideal para pequeñas empresas.
+----------------------------------------
+
+
+Comuna: Santiago
+========================================
+Nombre: Oficina en Santiago Centro
+Descripción: Oficina de 1 ambiente, ideal para trabajo independiente o pequeños negocios.
+----------------------------------------
+
+
+Comuna: Ñuñoa
+========================================
+Nombre: Departamento en Ñuñoa
+Descripción: Departamento de 3 habitaciones y 2 baños, en excelente ubicación cerca de estaciones de metro.
+----------------------------------------
+
+
+Comuna: Providencia
+========================================
+Nombre: Departamento en Providencia
+Descripción: Departamento moderno de 2 dormitorios y 1 baño, con vista panorámica.
+----------------------------------------
+
+
+Comuna: Las Condes
+========================================
+Nombre: Casa en Las Condes
+Descripción: Casa amplia con jardín y piscina, 4 dormitorios, ideal para familia.
+----------------------------------------
+
+
